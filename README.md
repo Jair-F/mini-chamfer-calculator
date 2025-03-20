@@ -1,11 +1,11 @@
 ## Installation
 - download the mini_chamfer_calculator.zip under [releases](https://github.com/Jair-F/mini-chamfer-calculator/releases) and extract in your documents folder
-- go inside the mini_chamfer_calculator and edit the `run.bat`
+<!---- go inside the mini_chamfer_calculator and edit the `run.bat`
   <br>
   ![image](https://github.com/Jair-F/mini-chamfer-calculator/assets/78746086/414c5eea-7ba3-46de-a6cb-c2034a77710a)
 - change the selected path to your path to the documents folder:
   <br>
-  ![image](https://github.com/Jair-F/mini-chamfer-calculator/assets/78746086/3c1999e0-9eb3-41aa-b4a9-f9406e3b56d5)
+  ![image](https://github.com/Jair-F/mini-chamfer-calculator/assets/78746086/3c1999e0-9eb3-41aa-b4a9-f9406e3b56d5) --->
 - open solidworks and edit the macro `run_macro.swp`
   <br>
   ![image](https://github.com/Jair-F/mini-chamfer-calculator/assets/78746086/44a96758-6bd4-445e-8f2b-c9de85d2285d)
