@@ -31,4 +31,9 @@
 
 
 
+## self Installation of packages with script
+run the `install_deps.ps1`
 
+if powershell doesnt allow to execute run this command as admin and then try again: `Set-ExecutionPolicy Unrestricted`
+
+run the run.bat command and the tool will work

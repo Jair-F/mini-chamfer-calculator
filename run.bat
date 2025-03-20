@@ -1,4 +1,6 @@
 @echo off
-W:
-cd W:\mini_chamfer_calculator
-start mini_chamfer_calculator.exe
+
+:: path of the script dir
+cd %~dp0
+
+start ./python_3_10_10/pythonw.exe main.pyw
