@@ -32,7 +32,7 @@
 
 
 ## self Installation of packages with script
-run the `install_deps.ps1`
+run the `install_deps.ps1`. Right click and then 'Run with Powershell'
 
 if powershell doesnt allow to execute run this command as admin and then try again: `Set-ExecutionPolicy Unrestricted`
 
