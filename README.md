@@ -37,3 +37,5 @@ run the `install_deps.ps1`
 if powershell doesnt allow to execute run this command as admin and then try again: `Set-ExecutionPolicy Unrestricted`
 
 run the run.bat command and the tool will work
+
+if you downloaded all dependencies you can move the folder to any directory and just run the run.bat and everything should work as expected
