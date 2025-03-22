@@ -7,7 +7,7 @@ run the run.bat command and the tool will work
 
 if you downloaded all dependencies you can move the folder to any directory and just run the run.bat and everything should work as expected
 
-Now follow the steps to [add the button in Solidworks](https://github.com/Jair-F/mini-chamfer-calculator/edit/master/README.md#installation-in-solidworks)
+Now follow the steps to [add the button in Solidworks](https://github.com/Jair-F/mini-chamfer-calculator?tab=readme-ov-file#installation-in-solidworks)
 
 ## Installation in SolidWorks
 <!----- download the mini_chamfer_calculator.zip under [releases](https://github.com/Jair-F/mini-chamfer-calculator/releases) and extract in your documents folder
