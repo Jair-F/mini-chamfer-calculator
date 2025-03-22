@@ -1,6 +1,17 @@
-## Installation
-- download the mini_chamfer_calculator.zip under [releases](https://github.com/Jair-F/mini-chamfer-calculator/releases) and extract in your documents folder
-<!---- go inside the mini_chamfer_calculator and edit the `run.bat`
+## self Installation of packages with script
+run the `install_deps.ps1`. Right click and then 'Run with Powershell'
+
+if powershell doesnt allow to execute run this command as admin and then try again: `Set-ExecutionPolicy Unrestricted`
+
+run the run.bat command and the tool will work
+
+if you downloaded all dependencies you can move the folder to any directory and just run the run.bat and everything should work as expected
+
+Now follow the steps to [add the button in Solidworks](https://github.com/Jair-F/mini-chamfer-calculator/edit/master/README.md#installation-in-solidworks)
+
+## Installation in SolidWorks
+<!----- download the mini_chamfer_calculator.zip under [releases](https://github.com/Jair-F/mini-chamfer-calculator/releases) and extract in your documents folder
+ go inside the mini_chamfer_calculator and edit the `run.bat`
   <br>
   ![image](https://github.com/Jair-F/mini-chamfer-calculator/assets/78746086/414c5eea-7ba3-46de-a6cb-c2034a77710a)
 - change the selected path to your path to the documents folder:
@@ -28,14 +39,3 @@
 - the new macro button is ready:
   <br>
   ![image](https://github.com/Jair-F/mini-chamfer-calculator/assets/78746086/c8458b09-e58e-4748-9641-8a92dde43cbf)
-
-
-
-## self Installation of packages with script
-run the `install_deps.ps1`. Right click and then 'Run with Powershell'
-
-if powershell doesnt allow to execute run this command as admin and then try again: `Set-ExecutionPolicy Unrestricted`
-
-run the run.bat command and the tool will work
-
-if you downloaded all dependencies you can move the folder to any directory and just run the run.bat and everything should work as expected
