@@ -5,12 +5,12 @@ from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QGridLayout, \
 import PyQt5.QtCore
 from PyQt5.QtGui import QDoubleValidator
 
-config_file_name = "./config.json"
-tool_list = None
+CONFIG_FILE_NAME = "./config.json"
+TOOL_LIST = None
 
 def tool_in_tool_list(diameter:str):
     try:
-        tool_list["tools"][diameter]
+        TOOL_LIST["tools"][diameter]
     except KeyError:
         return False
 
@@ -47,7 +47,7 @@ class Application():
         #self.tool_label.show()
 
         self.tool_combo_box = QComboBox(self.layout_widget)
-        for tool in tool_list["tools"].items():
+        for tool in TOOL_LIST["tools"].items():
             self.tool_combo_box.addItem(tool[1]["description"], userData=tool[0])
         self.tool_combo_box.setMinimumSize(280, 15)
         self.tool_combo_box.currentTextChanged.connect(self._handle_tool_changed)
@@ -96,7 +96,7 @@ class Application():
         self._handle_tool_changed(self.tool_combo_box.currentText())
 
     def _handle_tool_changed(self, tool_descr):
-        for tool in tool_list["tools"].items():
+        for tool in TOOL_LIST["tools"].items():
             if tool[1]["description"] == tool_descr:
                 self.selected_tool = tool[1]
         self._calc_update_data(self.chamf_size.text())
@@ -115,7 +115,7 @@ class Application():
 
         d = round((self.selected_tool["top_diameter"] - \
                    self.selected_tool["bottom_diameter"])/2, ndigits=3)
-        z_lvl = round(-(d + self.selected_tool["cl"] + tool_list["safety"]), ndigits=3)
+        z_lvl = round(-(d + self.selected_tool["cl"] + TOOL_LIST["safety"]), ndigits=3)
         g_offset = round((d - self.selected_tool["cl"] - float(_chamf_size)), ndigits=3)
 
         if float(_chamf_size) >= self.selected_tool["height"]: # chamfer not to big
@@ -135,11 +135,11 @@ class Application():
 
 if __name__ == "__main__":
 
-    config_file_str = ""
-    file_size = os.path.getsize(filename=config_file_name)
-    with open(config_file_name, 'r', encoding='utf-8') as file:
-        config_file_str = file.read(file_size)
-        tool_list = json.loads(config_file_str)
+    CONFIG_FILE_STR = ""
+    file_size = os.path.getsize(filename=CONFIG_FILE_NAME)
+    with open(CONFIG_FILE_NAME, 'r', encoding='utf-8') as file:
+        CONFIG_FILE_STR = file.read(file_size)
+        TOOL_LIST = json.loads(CONFIG_FILE_STR)
 
     app_window = Application()
     app_window.run()
