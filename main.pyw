@@ -1,7 +1,12 @@
+"""
+    mini chamfer calculator
+"""
+
 import json
 import os
+import sys
 from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QGridLayout, \
-    QComboBox, QWidget, QSizePolicy, QLineEdit
+    QComboBox, QWidget, QLineEdit
 import PyQt5.QtCore
 from PyQt5.QtGui import QDoubleValidator
 
@@ -9,6 +14,9 @@ CONFIG_FILE_NAME = "./config.json"
 TOOL_LIST = None
 
 def tool_in_tool_list(diameter:str):
+    """
+        returns tool in list
+    """
     try:
         TOOL_LIST["tools"][diameter]
     except KeyError:
@@ -18,6 +26,9 @@ def tool_in_tool_list(diameter:str):
 
 
 class Application():
+    """
+        GUI app
+    """
     def __init__(self):
         self.selected_tool = None
 
@@ -129,7 +140,16 @@ class Application():
         self.geom_offs.setText(str(g_offset))
 
     def run(self):
+        """
+            runs the GUI
+        """
         self.app.exec_()
+
+    def stop(self):
+        """
+            stops the app
+        """
+        sys.exit(0)
 
 
 
