@@ -1,6 +1,7 @@
 import json
 import os
-from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QGridLayout, QComboBox, QWidget, QSizePolicy, QLineEdit
+from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QGridLayout, \
+    QComboBox, QWidget, QSizePolicy, QLineEdit
 import PyQt5.QtCore
 from PyQt5.QtGui import QDoubleValidator
 
@@ -12,9 +13,10 @@ def tool_in_tool_list(diameter:str):
         tool_list["tools"][diameter]
     except KeyError:
         return False
-    
+
     return True
-    
+
+
 class Application():
     def __init__(self):
         self.selected_tool = None
@@ -36,42 +38,42 @@ class Application():
         #self.size_policy.setHorizontalPolicy(QSizePolicy.Policy.Expanding)
         #self.size_policy.setVerticalPolicy(QSizePolicy.Policy.Expanding)
 
-        self.layout_widgt = QWidget(self.main_window)
-        self.layout_widgt.setFixedSize(self.main_window.frameSize())
-        #self.layout_widgt.setContentsMargins(0,0,0,0)
-        #self.layout_widgt.setSizePolicy(self.size_policy)
+        self.layout_widget = QWidget(self.main_window)
+        self.layout_widget.setFixedSize(self.main_window.frameSize())
+        #self.layout_widget.setContentsMargins(0,0,0,0)
+        #self.layout_widget.setSizePolicy(self.size_policy)
 
-        self.tool_label = QLabel("Text", self.layout_widgt)
+        self.tool_label = QLabel("Text", self.layout_widget)
         #self.tool_label.show()
 
-        self.tool_combo_box = QComboBox(self.layout_widgt)
+        self.tool_combo_box = QComboBox(self.layout_widget)
         for tool in tool_list["tools"].items():
             self.tool_combo_box.addItem(tool[1]["description"], userData=tool[0])
         self.tool_combo_box.setMinimumSize(280, 15)
         self.tool_combo_box.currentTextChanged.connect(self._handle_tool_changed)
         #self.tool_combo_box.show()
 
-        self.chamf_label = QLabel("chamfer size", self.layout_widgt)
+        self.chamf_label = QLabel("chamfer size", self.layout_widget)
 
-        self.chamf_size = QLineEdit("0.2", self.layout_widgt)
+        self.chamf_size = QLineEdit("0.2", self.layout_widget)
         self.chamf_size.setMaximumWidth(80)
         self.validator = QDoubleValidator(self.chamf_size, decimals=2)
         self.validator.setLocale(PyQt5.QtCore.QLocale("en_US")) # for .1 numbers
         self.chamf_size.setValidator(self.validator)
         self.chamf_size.textChanged.connect(self._calc_update_data)
 
-        self.z_lvl_label = QLabel("Z-Level", self.layout_widgt)
-        self.z_lvl = QLineEdit(self.layout_widgt)
+        self.z_lvl_label = QLabel("Z-Level", self.layout_widget)
+        self.z_lvl = QLineEdit(self.layout_widget)
         self.z_lvl.setMaximumWidth(80)
         self.z_lvl.setReadOnly(True)
 
-        self.geom_offs_label = QLabel("geom. offset", self.layout_widgt)
-        self.geom_offs = QLineEdit(self.layout_widgt)
+        self.geom_offs_label = QLabel("geom. offset", self.layout_widget)
+        self.geom_offs = QLineEdit(self.layout_widget)
         self.geom_offs.setMaximumWidth(80)
         self.geom_offs.setReadOnly(True)
 
-        #self.cut_dia_label = QLabel("cut. dia", self.layout_widgt)
-        #self.cut_dia = QLineEdit(self.layout_widgt)
+        #self.cut_dia_label = QLabel("cut. dia", self.layout_widget)
+        #self.cut_dia = QLineEdit(self.layout_widget)
         #self.cut_dia.setMaximumWidth(80)
         #self.cut_dia.setReadOnly(True)
         #self.cut_dia.setDisabled(True)
@@ -87,8 +89,8 @@ class Application():
         #self.window_layout.addWidget(self.cut_dia_label, 4, 0)
         #self.window_layout.addWidget(self.cut_dia, 4, 1)
 
-        self.layout_widgt.setLayout(self.window_layout)
-        self.layout_widgt.show()
+        self.layout_widget.setLayout(self.window_layout)
+        self.layout_widget.show()
         self.main_window.show()
 
         self._handle_tool_changed(self.tool_combo_box.currentText())
@@ -108,13 +110,14 @@ class Application():
             #self.cut_dia.setText("")
             self.geom_offs.setText("")
             return
-        
+
         #print(self.selected_tool)
 
-        d = round((self.selected_tool["top_diameter"] - self.selected_tool["bottom_diameter"])/2, ndigits=3)
+        d = round((self.selected_tool["top_diameter"] - \
+                   self.selected_tool["bottom_diameter"])/2, ndigits=3)
         z_lvl = round(-(d + self.selected_tool["cl"] + tool_list["safety"]), ndigits=3)
         g_offset = round((d - self.selected_tool["cl"] - float(_chamf_size)), ndigits=3)
-        
+
         if float(_chamf_size) >= self.selected_tool["height"]: # chamfer not to big
             self.z_lvl.setText("")
             #self.cut_dia.setText("")
@@ -127,17 +130,17 @@ class Application():
 
     def run(self):
         self.app.exec_()
-    
+
 
 
 if __name__ == "__main__":
 
     config_file_str = ""
     file_size = os.path.getsize(filename=config_file_name)
-    with open(config_file_name, 'r') as file:
+    with open(config_file_name, 'r', encoding='utf-8') as file:
         config_file_str = file.read(file_size)
         tool_list = json.loads(config_file_str)
-    
+
     app_window = Application()
     app_window.run()
     
